@@ -8,7 +8,8 @@ public class CarMove : MonoBehaviour
     [SerializeField] float _nowSpeed = 0f;
     [SerializeField] float _maxSpeed = 0f;
     [SerializeField] float _minusMoveSpeed = 0f;
-
+    [SerializeField] float _rotateSpeed = 0f;
+ 
     private Rigidbody _rb;
     private int _count = 0;
 
@@ -18,14 +19,15 @@ public class CarMove : MonoBehaviour
     }
     void Update()
     {
-         
+        Move();
     }
 
     void Move()
     {
         float _vInput = Input.GetAxis("Vertical");
+        float _hInput = Input.GetAxis("Horizontal");
 
-        //transform.Rotate(0, _hInput * _rotateSpeed, 0);
+        transform.Rotate(0, _hInput * _rotateSpeed, 0);
         if (_vInput != 0)
         {
             if (_nowSpeed < _maxSpeed && _vInput == 1)
