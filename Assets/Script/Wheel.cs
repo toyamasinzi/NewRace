@@ -2,21 +2,23 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
+/*[System.Serializable]
 public class AxleInfo
 {
     public WheelCollider _leftWheel;
     public WheelCollider _rightWheel;
     public bool _motor;
     public bool _steering;
-}
+}*/
 
-public class SimpleCarController : MonoBehaviour
+public class Wheel : MonoBehaviour
 {
-    public List<AxleInfo> axleInfos;
-    public float maxMotorTorque;//アクセルに力を加えるためのトルク数
-    public float maxSteeringAngle;//ステアリングホイールの回転角度
-
+    [SerializeField] WheelCollider _leftWheel;
+    [SerializeField] WheelCollider _rightWheel;
+    [SerializeField] bool _motor;
+    [SerializeField] bool _steering;
+    [SerializeField] float maxMotorTorque;
+    [SerializeField] float maxSteeringAngle;
 
 
     // 対応する視覚的なホイールを見つけます
@@ -32,18 +34,18 @@ public class SimpleCarController : MonoBehaviour
 
         Vector3 position;
         Quaternion rotation;
-        collider.GetWorldPose(out position, out rotation);//ワールド座標にホイールの位置とホイールの角度を変換
+        collider.GetWorldPose(out position, out rotation);
 
-        visualWheel.transform.position = position;//子のオブジェクトの位置をワールド座標に変換
-        visualWheel.transform.rotation = rotation;//子のオブジェクトの角度をワールド座標に変換
+        visualWheel.transform.position = position;
+        visualWheel.transform.rotation = rotation;
     }
 
-    public void FixedUpdate()
+    /*public void FixedUpdate()
     {
         float motor = maxMotorTorque * Input.GetAxis("Vertical");
         float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
 
-        foreach (AxleInfo axleInfo in axleInfos)
+        foreach (AxleInfo axleInfo in axleInfo)
         {
             if (axleInfo._steering)
             {
@@ -58,7 +60,5 @@ public class SimpleCarController : MonoBehaviour
             ApplyLocalPositionToVisuals(axleInfo._leftWheel);
             ApplyLocalPositionToVisuals(axleInfo._rightWheel);
         }
-    }
+    }*/
 }
-
-
