@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 1169.6
-    y: 436.80002
+    x: 1007.2
+    y: 308.80002
     width: 269.6
     height: 329.6
   m_ShowMode: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 55, y: 57}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
-  controlID: 226
+  controlID: 26
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,8 +211,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1169.6
-    y: 436.80002
+    x: 1007.2
+    y: 308.80002
     width: 269.6
     height: 308.6
   m_ViewDataDictionary: {fileID: 0}
@@ -444,9 +444,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 8.51575, y: -6.249701, z: 4.9816546}
+    m_Target: {x: 12.526238, y: -7.638759, z: 3.4508047}
     speed: 2
-    m_Value: {x: 8.51575, y: -6.249701, z: 4.9816546}
+    m_Value: {x: 12.526238, y: -7.638759, z: 3.4508047}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -493,13 +493,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.28695303, y: -0.30348352, z: 0.09639843, w: -0.90356946}
+    m_Target: {x: 0.18519624, y: 0.21911593, z: -0.042212963, w: 0.95702064}
     speed: 2
-    m_Value: {x: -0.28557247, y: -0.3036013, z: 0.09593457, w: -0.9039199}
+    m_Value: {x: 0.18507062, y: 0.22198823, z: -0.04276879, w: 0.9563686}
   m_Size:
-    m_Target: 10
+    m_Target: 14.830857
     speed: 2
-    m_Value: 4.4148865
+    m_Value: 14.192208
   m_Ortho:
     m_Target: 0
     speed: 2
