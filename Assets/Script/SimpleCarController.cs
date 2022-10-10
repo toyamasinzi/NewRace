@@ -19,8 +19,10 @@ public class AxleInfo
 public class SimpleCarController : MonoBehaviour
 {
     [SerializeField] List<AxleInfo> _axleInfos;
-    [SerializeField] float _maxMotorTorque;//アクセルに力を加えるためのトルク数
+    [SerializeField] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
+    public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField] float _maxSteeringAngle;//ステアリングホイールの回転角度
+    public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
 
 
     //タイヤの回転を表現する。目に見えるタイヤの動き
@@ -46,8 +48,12 @@ public class SimpleCarController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        float motor = _maxMotorTorque * Input.GetAxis("Vertical");
-        float steering = _maxSteeringAngle * Input.GetAxis("Horizontal");
+        Handle();
+    }
+    void Handle()
+    {
+        float motor = MaxMotorTorque * Input.GetAxis("Vertical");
+        float steering = MaxSteeringAngle * Input.GetAxis("Horizontal");
 
         foreach (AxleInfo axleInfo in _axleInfos)
         {
