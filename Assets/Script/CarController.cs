@@ -8,8 +8,8 @@ public class AxleInfo
     /// <summary>  プロパティ </summary>
     [SerializeField] WheelCollider _leftWheel;
     [HideInInspector] public WheelCollider LeftWheel { get => _leftWheel; }
-    [SerializeField] WheelCollider _rightWheel;
-    [HideInInspector]public WheelCollider RightWheel { get => _rightWheel;}
+    //[SerializeField] WheelCollider _rightWheel;
+    //[HideInInspector]public WheelCollider RightWheel { get => _rightWheel;}
     [SerializeField] bool _motor;
     [HideInInspector] public bool Motor { get => _motor; }
     [SerializeField] bool _steering;
@@ -19,11 +19,16 @@ public class AxleInfo
 public class CarController : MonoBehaviour
 {
     [SerializeField] List<AxleInfo> _axleInfos;
+    //[SerializeField] Transform _handle;
     [SerializeField] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
 
+    private void Start()
+    {
+        GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
+    }
 
     //タイヤの回転を表現する。目に見えるタイヤの動き
     // 対応する視覚的なホイールを見つけます
@@ -60,15 +65,16 @@ public class CarController : MonoBehaviour
             if (axleInfo.Steering)//steeringのbool型を判定して左右のホイールのsteerAngleに反映　タイヤの曲がるときの角度
             {
                 axleInfo.LeftWheel.steerAngle = steering;
-                axleInfo.RightWheel.steerAngle = steering;
+                //_handle.localEulerAngles = new Vector3(0, steering, 0);
+                // axleInfo.RightWheel.steerAngle = steering;
             }
             if (axleInfo.Motor)//motorのbool型を判定して左右のホイールのmotorTorqueに反映　タイヤの前進
             {
                 axleInfo.LeftWheel.motorTorque = motor;
-                axleInfo.RightWheel.motorTorque = motor;
+                // axleInfo.RightWheel.motorTorque = motor;
             }
             ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.RightWheel);
+            // ApplyLocalPositionToVisuals(axleInfo.RightWheel);
         }
     }
 }
