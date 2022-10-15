@@ -27,7 +27,7 @@ public class CarController : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
+        //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
     }
 
     //タイヤの回転を表現する。目に見えるタイヤの動き
