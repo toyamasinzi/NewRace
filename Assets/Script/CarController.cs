@@ -8,8 +8,8 @@ public class AxleInfo
     /// <summary>  プロパティ </summary>
     [SerializeField] WheelCollider _leftWheel;
     [HideInInspector] public WheelCollider LeftWheel { get => _leftWheel; }
-    //[SerializeField] WheelCollider _rightWheel;
-    //[HideInInspector]public WheelCollider RightWheel { get => _rightWheel;}
+    [SerializeField] WheelCollider _rightWheel;
+    [HideInInspector] public WheelCollider RightWheel { get => _rightWheel; }
     [SerializeField] bool _motor;
     [HideInInspector] public bool Motor { get => _motor; }
     [SerializeField] bool _steering;
@@ -66,15 +66,15 @@ public class CarController : MonoBehaviour
             {
                 axleInfo.LeftWheel.steerAngle = steering;
                 //_handle.localEulerAngles = new Vector3(0, steering, 0);
-                // axleInfo.RightWheel.steerAngle = steering;
+                axleInfo.RightWheel.steerAngle = steering;
             }
             if (axleInfo.Motor)//motorのbool型を判定して左右のホイールのmotorTorqueに反映　タイヤの前進
             {
                 axleInfo.LeftWheel.motorTorque = motor;
-                // axleInfo.RightWheel.motorTorque = motor;
+                axleInfo.RightWheel.motorTorque = motor;
             }
             ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
-            // ApplyLocalPositionToVisuals(axleInfo.RightWheel);
+            ApplyLocalPositionToVisuals(axleInfo.RightWheel);
         }
     }
 }
