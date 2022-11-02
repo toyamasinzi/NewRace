@@ -33,7 +33,7 @@ public class CarController : MonoBehaviour
     //タイヤの回転を表現する。目に見えるタイヤの動き
     // 対応する視覚的なホイールを見つけます
     // Transform を正しく適用します
-    public void ApplyLocalPositionToVisuals(WheelCollider collider)
+  /*  public void ApplyLocalPositionToVisuals(WheelCollider collider)
 
     {
         if (collider.transform.childCount == 0)//子オブジェクトが0だったら戻す　エラーを出さないための処理
@@ -49,7 +49,7 @@ public class CarController : MonoBehaviour
 
         visualWheel.transform.position = position;//子のオブジェクトの位置をワールド座標に変換
         visualWheel.transform.rotation = rotation;//子のオブジェクトの角度をワールド座標に変換
-    }
+    }*/
 
     public void FixedUpdate()
     {
@@ -73,8 +73,8 @@ public class CarController : MonoBehaviour
                 axleInfo.LeftWheel.motorTorque = motor;
                 axleInfo.RightWheel.motorTorque = motor;
             }
-            ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.RightWheel);
+           /* ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
+            ApplyLocalPositionToVisuals(axleInfo.RightWheel);*/
         }
     }
 }
