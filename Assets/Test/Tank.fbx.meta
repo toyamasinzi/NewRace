@@ -6,9 +6,6 @@ ModelImporter:
   - first:
       74: -9159617637101845520
     second: LeftPod
-  - first:
-      74: 7353795219421536785
-    second: RigthMissile
   externalObjects: {}
   materials:
     materialImportMode: 2
