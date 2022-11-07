@@ -2,27 +2,30 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// インスペクター設定用リスト
+/// </summary>
 [System.Serializable]
 public class AxleInfo
 {
     /// <summary>  プロパティ </summary>
-    [SerializeField] WheelCollider _leftWheel;
+    [SerializeField,Tooltip("左タイヤのホイルコライダー")] WheelCollider _leftWheel;
     [HideInInspector] public WheelCollider LeftWheel { get => _leftWheel; }
-    [SerializeField] WheelCollider _rightWheel;
+    [SerializeField,Tooltip("右タイヤのホイルコライダー")] WheelCollider _rightWheel;
     [HideInInspector] public WheelCollider RightWheel { get => _rightWheel; }
-    [SerializeField] bool _motor;
+    [SerializeField,Tooltip("タイヤに前進の力を加えるか")] bool _motor;
     [HideInInspector] public bool Motor { get => _motor; }
-    [SerializeField] bool _steering;
+    [SerializeField, Tooltip("タイヤに左右の力を加えるか")] bool _steering;
     [HideInInspector] public bool Steering { get => _steering; }
 }
 
 public class CarController : MonoBehaviour
 {
-    [SerializeField] List<AxleInfo> _axleInfos;
+    [SerializeField, Tooltip("AxleInfoのList")] List<AxleInfo> _axleInfos;
     //[SerializeField] Transform _handle;
-    [SerializeField] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
+    [SerializeField,Tooltip("アクセルのトルク数")] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
-    [SerializeField] float _maxSteeringAngle;//ステアリングホイールの回転角度
+    [SerializeField, Tooltip("タイヤの回転角度")] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
 
     private void Start()
@@ -55,6 +58,9 @@ public class CarController : MonoBehaviour
     {
         Handle();
     }
+    /// <summary>
+    /// 移動処理
+    /// </summary>
     void Handle()
     {
         float motor = MaxMotorTorque * Input.GetAxis("Vertical");
