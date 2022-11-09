@@ -17,17 +17,20 @@ public class AxleInfo
     [HideInInspector] public bool Motor { get => _motor; }
     [SerializeField, Tooltip("タイヤに左右の力を加えるか")] bool _steering;
     [HideInInspector] public bool Steering { get => _steering; }
+    [SerializeField, Tooltip("ブレーキ")] bool _brake;
+    [HideInInspector] public bool Brake { get => _brake; set => _brake = value; }
 }
 
 public class CarController : MonoBehaviour
 {
     [SerializeField, Tooltip("AxleInfoのList")] List<AxleInfo> _axleInfos;
     //[SerializeField] Transform _handle;
-    [SerializeField,Tooltip("アクセルのトルク数")] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
+    [SerializeField, Tooltip("アクセルのトルク数")] float _maxMotorTorque = 400f;//アクセルに力を加えるためのトルク数
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField, Tooltip("タイヤの回転角度")] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
-
+    [SerializeField, Tooltip("ブレーキのトルク数")] float _maxBrakeTorque = 0;
+    public float MaxBrakeTorque { get => _maxBrakeTorque; set => _maxBrakeTorque = value; }
     private void Start()
     {
         //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
@@ -65,6 +68,7 @@ public class CarController : MonoBehaviour
     {
         float motor = MaxMotorTorque * Input.GetAxis("Vertical");
         float steering = MaxSteeringAngle * Input.GetAxis("Horizontal");
+        bool Brake = Input.GetKeyDown("Jump");
 
         foreach (AxleInfo axleInfo in _axleInfos)
         {
@@ -79,8 +83,18 @@ public class CarController : MonoBehaviour
                 axleInfo.LeftWheel.motorTorque = motor;
                 axleInfo.RightWheel.motorTorque = motor;
             }
-           /* ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.RightWheel);*/
+            if (Brake)
+            {
+                axleInfo.LeftWheel.brakeTorque = MaxBrakeTorque;
+                axleInfo.RightWheel.brakeTorque = MaxBrakeTorque;
+            }
+            else
+            {
+                axleInfo.LeftWheel.brakeTorque = 0;
+                axleInfo.RightWheel.brakeTorque = 0;
+            }
+            /* ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
+             ApplyLocalPositionToVisuals(axleInfo.RightWheel);*/
         }
     }
 }

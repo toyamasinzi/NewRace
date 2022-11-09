@@ -4,6 +4,9 @@ ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
+      74: 3712800291389183297
+    second: TankMove
+  - first:
       74: -9159617637101845520
     second: LeftPod
   externalObjects: {}
