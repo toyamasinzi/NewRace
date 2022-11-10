@@ -9,16 +9,14 @@ using System.Collections.Generic;
 public class AxleInfo
 {
     /// <summary>  プロパティ </summary>
-    [SerializeField,Tooltip("左タイヤのホイルコライダー")] WheelCollider _leftWheel;
+    [SerializeField, Tooltip("左タイヤのホイルコライダー")] WheelCollider _leftWheel;
     [HideInInspector] public WheelCollider LeftWheel { get => _leftWheel; }
-    [SerializeField,Tooltip("右タイヤのホイルコライダー")] WheelCollider _rightWheel;
+    [SerializeField, Tooltip("右タイヤのホイルコライダー")] WheelCollider _rightWheel;
     [HideInInspector] public WheelCollider RightWheel { get => _rightWheel; }
-    [SerializeField,Tooltip("タイヤに前進の力を加えるか")] bool _motor;
+    [SerializeField, Tooltip("タイヤに前進の力を加えるか")] bool _motor;
     [HideInInspector] public bool Motor { get => _motor; }
     [SerializeField, Tooltip("タイヤに左右の力を加えるか")] bool _steering;
     [HideInInspector] public bool Steering { get => _steering; }
-    [SerializeField, Tooltip("ブレーキ")] bool _brake;
-    [HideInInspector] public bool Brake { get => _brake; set => _brake = value; }
 }
 
 public class CarController : MonoBehaviour
@@ -29,8 +27,8 @@ public class CarController : MonoBehaviour
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField, Tooltip("タイヤの回転角度")] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
-    [SerializeField, Tooltip("ブレーキのトルク数")] float _maxBrakeTorque = 0;
-    public float MaxBrakeTorque { get => _maxBrakeTorque; set => _maxBrakeTorque = value; }
+
+    bool _breke = false;
     private void Start()
     {
         //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
@@ -39,23 +37,23 @@ public class CarController : MonoBehaviour
     //タイヤの回転を表現する。目に見えるタイヤの動き
     // 対応する視覚的なホイールを見つけます
     // Transform を正しく適用します
-  /*  public void ApplyLocalPositionToVisuals(WheelCollider collider)
+    /*  public void ApplyLocalPositionToVisuals(WheelCollider collider)
 
-    {
-        if (collider.transform.childCount == 0)//子オブジェクトが0だったら戻す　エラーを出さないための処理
-        {
-            return;
-        }
+      {
+          if (collider.transform.childCount == 0)//子オブジェクトが0だったら戻す　エラーを出さないための処理
+          {
+              return;
+          }
 
-        Transform visualWheel = collider.transform.GetChild(0);//オブジェクトについてる子オブジェクトを取ってくる
+          Transform visualWheel = collider.transform.GetChild(0);//オブジェクトについてる子オブジェクトを取ってくる
 
-        Vector3 position;
-        Quaternion rotation;
-        collider.GetWorldPose(out position, out rotation);//ワールド座標にホイールの位置とホイールの角度を変換
+          Vector3 position;
+          Quaternion rotation;
+          collider.GetWorldPose(out position, out rotation);//ワールド座標にホイールの位置とホイールの角度を変換
 
-        visualWheel.transform.position = position;//子のオブジェクトの位置をワールド座標に変換
-        visualWheel.transform.rotation = rotation;//子のオブジェクトの角度をワールド座標に変換
-    }*/
+          visualWheel.transform.position = position;//子のオブジェクトの位置をワールド座標に変換
+          visualWheel.transform.rotation = rotation;//子のオブジェクトの角度をワールド座標に変換
+      }*/
 
     public void FixedUpdate()
     {
@@ -68,7 +66,6 @@ public class CarController : MonoBehaviour
     {
         float motor = MaxMotorTorque * Input.GetAxis("Vertical");
         float steering = MaxSteeringAngle * Input.GetAxis("Horizontal");
-        bool Brake = Input.GetKeyDown("Jump");
 
         foreach (AxleInfo axleInfo in _axleInfos)
         {
@@ -82,16 +79,6 @@ public class CarController : MonoBehaviour
             {
                 axleInfo.LeftWheel.motorTorque = motor;
                 axleInfo.RightWheel.motorTorque = motor;
-            }
-            if (Brake)
-            {
-                axleInfo.LeftWheel.brakeTorque = MaxBrakeTorque;
-                axleInfo.RightWheel.brakeTorque = MaxBrakeTorque;
-            }
-            else
-            {
-                axleInfo.LeftWheel.brakeTorque = 0;
-                axleInfo.RightWheel.brakeTorque = 0;
             }
             /* ApplyLocalPositionToVisuals(axleInfo.LeftWheel);
              ApplyLocalPositionToVisuals(axleInfo.RightWheel);*/
