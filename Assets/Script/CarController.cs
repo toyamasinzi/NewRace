@@ -27,8 +27,6 @@ public class CarController : MonoBehaviour
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField, Tooltip("タイヤの回転角度")] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
-
-    bool _breke = false;
     private void Start()
     {
         //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
