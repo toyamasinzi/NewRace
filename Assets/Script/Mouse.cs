@@ -3,8 +3,8 @@ using UnityEngine.UI;
 
 public class Mouse : MonoBehaviour
 {
-    public Vector3 _targetPos;
-    //public Vector3 TargetPos { get => _targetPos; set => _targetPos = value; }
+    private Vector3 _targetPos;
+    public Vector3 TargetPos { get => _targetPos; set => _targetPos = value; }
     [SerializeField] Image _aimImage;
 
     void Update()
