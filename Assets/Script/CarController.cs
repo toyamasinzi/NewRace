@@ -27,6 +27,8 @@ public class CarController : MonoBehaviour
     public float MaxMotorTorque { get => _maxMotorTorque; set => _maxMotorTorque = value; }
     [SerializeField, Tooltip("タイヤの回転角度")] float _maxSteeringAngle;//ステアリングホイールの回転角度
     public float MaxSteeringAngle { get => _maxSteeringAngle; set => _maxSteeringAngle = value; }
+
+    [SerializeField] Animator _anim; 
     private void Start()
     {
         //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
@@ -64,6 +66,15 @@ public class CarController : MonoBehaviour
     {
         float motor = MaxMotorTorque * Input.GetAxis("Vertical");
         float steering = MaxSteeringAngle * Input.GetAxis("Horizontal");
+
+        if(motor != 0)
+        {
+            _anim.Play("Move_Tank");
+        }
+        else
+        {
+            _anim.Play("Idle");
+        }
 
         foreach (AxleInfo axleInfo in _axleInfos)
         {
