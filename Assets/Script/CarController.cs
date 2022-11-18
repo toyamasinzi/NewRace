@@ -31,7 +31,7 @@ public class CarController : MonoBehaviour
     [SerializeField] Animator _anim; 
     private void Start()
     {
-        //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);
+        //GetComponent<Rigidbody>().centerOfMass = new Vector3(0, -0.5f, -0.2f);/
     }
 
     //タイヤの回転を表現する。目に見えるタイヤの動き
@@ -81,7 +81,7 @@ public class CarController : MonoBehaviour
             if (axleInfo.Steering)//steeringのbool型を判定して左右のホイールのsteerAngleに反映　タイヤの曲がるときの角度
             {
                 axleInfo.LeftWheel.steerAngle = steering;
-                //_handle.localEulerAngles = new Vector3(0, steering, 0);
+                //_handle.localEulerAngles = new Vector3(0, steering, 0);// ハンドルの操作をタイヤの向きと同期させる
                 axleInfo.RightWheel.steerAngle = steering;
             }
             if (axleInfo.Motor)//motorのbool型を判定して左右のホイールのmotorTorqueに反映　タイヤの前進
