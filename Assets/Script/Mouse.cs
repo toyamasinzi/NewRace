@@ -16,8 +16,6 @@ public class Mouse : MonoBehaviour
         if (Physics.Raycast(ray, out hit))
         {
             _targetPos = hit.point;
-            print(_targetPos);
-
             if (hit.transform.gameObject.tag == ("Enemy"))
             {
                 _aimImage.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
