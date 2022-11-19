@@ -17,7 +17,7 @@ public class Shoot : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && _nowTime > _time)
         {
             _mazul.Play();
-            GameObject createdBullet = Instantiate(_bullet) as GameObject;
+            GameObject createdBullet = Instantiate(_bullet);
             createdBullet.transform.position = _bulletPos.transform.position;
             Vector3 force;
             force = _bulletPos.transform.forward * _speed;
