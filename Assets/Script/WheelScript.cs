@@ -12,6 +12,8 @@ public class WheelScript : MonoBehaviour
     [SerializeField] float Breaking = 20;
     [SerializeField] float Turning = 20;
 
+    [SerializeField] Animator _anim;
+
     void Update()
     {
         Handle();
@@ -31,9 +33,17 @@ public class WheelScript : MonoBehaviour
         WheelFrontLeft.steerAngle = Input.GetAxis("Horizontal") * Turning;
         WheelFrontRight.steerAngle = Input.GetAxis("Horizontal") * Turning;
 
+        if (WheelRearRight.motorTorque != 0)
+        {
+            _anim.Play("Move_Tank");
+        }
+        else
+        {
+            _anim.Play("Idle");
+        }
+
         if (Input.GetButtonDown("Fire2"))
         {
-            Debug.Log("1q11");
             WheelRearLeft.brakeTorque = Breaking;
             WheelRearRight.brakeTorque = Breaking;
         }

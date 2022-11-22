@@ -5703,8 +5703,9 @@ MonoBehaviour:
   WheelRearRight: {fileID: 1283481983}
   WheelRearLeft: {fileID: 1613877687}
   Speed: 100
-  Breaking: 300
+  Breaking: 10000
   Turning: 20
+  _anim: {fileID: 1317159359}
 --- !u!114 &1029390311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5720,7 +5721,7 @@ MonoBehaviour:
   _bullet: {fileID: 6313012742304590194, guid: 8f1cfb2c37e3f124aa3a521e3d418b58, type: 3}
   _mazul: {fileID: 2114077446}
   _bulletPos: {fileID: 311401978}
-  _speed: 1500
+  _speed: 5000
   _time: 3
 --- !u!54 &1029390312
 Rigidbody:
@@ -5760,7 +5761,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh24758
+  m_Name: pb_Mesh25122
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
