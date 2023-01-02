@@ -5,8 +5,13 @@ public class Mouse : MonoBehaviour
 {
     private Vector3 _targetPos;
     public Vector3 TargetPos { get => _targetPos; set => _targetPos = value; }
+    [Tooltip("クロスヘア")]
     [SerializeField] Image _aimImage;
 
+    private void Start()
+    {
+        Cursor.visible = false;//カーソル消す
+    }
     void Update()
     {
         transform.position = Input.mousePosition;
